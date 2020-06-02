@@ -7,13 +7,6 @@ class SongsController < ApplicationController
 
  def create
   song = Song.create(song_params)
-  
-  # byebug
-  
-  # song.add_chords(song_params[:song][:chords])
-  # song_params[:song][:chords_attributes].each do |chord|
-  #   song.chords.create(chord)
-  # end
 
   render json: song, include: [:chords]
  end
