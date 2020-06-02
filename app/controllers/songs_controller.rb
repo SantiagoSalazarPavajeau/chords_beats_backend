@@ -5,8 +5,7 @@ class SongsController < ApplicationController
     options = {
       include: [:chords]
     }
-    
-    render json: SongSerializer.new(song, options)
+    render json: SongSerializer.new(song, options).serialized_json
     # render json: song, include: [:chords]
  end
 
@@ -18,7 +17,12 @@ class SongsController < ApplicationController
 
  def index
   songs = Song.all
-  render json: songs, include: [:chords]
+  options = {
+    is_collection: true,
+    # include: [:chords]
+  }
+  render json: SongSerializer.new(songs).serialized_json
+  # render json: songs, include: [:chords]
  end
 
  private

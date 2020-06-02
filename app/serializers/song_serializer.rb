@@ -1,5 +1,8 @@
 class SongSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name
-  has_many :chords
+  attributes :name, :chords
+
+  def chords
+    object.chords
+  end
 end
