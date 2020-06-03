@@ -11,8 +11,7 @@ class SongsController < ApplicationController
 
  def create
   song = Song.create(song_params)
-
-  render json: song, include: [:chords]
+  render json: SongSerializer.new(song).serialized_json
  end
 
  def index
